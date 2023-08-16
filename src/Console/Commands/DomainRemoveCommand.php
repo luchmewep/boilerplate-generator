@@ -5,6 +5,7 @@ namespace Luchavez\BoilerplateGenerator\Console\Commands;
 use Illuminate\Support\Facades\File;
 use Luchavez\BoilerplateGenerator\Exceptions\MissingNameArgumentException;
 use Luchavez\BoilerplateGenerator\Exceptions\PackageNotFoundException;
+use function Laravel\Prompts\text;
 
 /**
  * Class DomainRemoveCommand
@@ -75,9 +76,14 @@ class DomainRemoveCommand extends DomainEnableCommand
         }
 
         // Ask for confirmation before deletion
-        $confirm = $this->ask(question: 'Enter domain name to confirm deletion', default: $this->domain_name);
+        $confirm_name = text(
+            label: 'Enter domain name to confirm deletion',
+            placeholder: $this->domain_name,
+            default: $this->domain_name,
+            required: true
+        );
 
-        if ($confirm != $this->domain_name) {
+        if ($confirm_name != $this->domain_name) {
             $this->failed('Domain name is incorrect. Cancelled domain deletion.');
             return self::FAILURE;
         }

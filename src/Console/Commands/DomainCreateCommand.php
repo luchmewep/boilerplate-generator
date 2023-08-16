@@ -58,7 +58,7 @@ class DomainCreateCommand extends GeneratorCommand
      */
     public function handle(): bool|null
     {
-        $this->setVendorPackageDomain(true, false);
+        $this->setVendorPackageDomain(show_domain_choices: false);
 
         $this->domain_name = $this->getNameInput();
 

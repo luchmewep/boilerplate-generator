@@ -2,12 +2,14 @@
 
 namespace Luchavez\BoilerplateGenerator\Console\Commands;
 
+use Illuminate\Console\OutputStyle;
 use Luchavez\BoilerplateGenerator\Traits\UsesCommandMultipleTargetsTrait;
 use Illuminate\Console\Command;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Class TestCommand
@@ -194,11 +196,7 @@ class TestCommand extends Command
 
         $this->ongoing($get_blinking_icon('🏃').' Running command: '.$this->getBoldText($command), false);
 
-        // Execute command and save output
-        exec($command, $output);
-
-        // Append output to the main output
-        $this->getOutput()->writeln($output);
+        exec($command);
     }
 
     /**
