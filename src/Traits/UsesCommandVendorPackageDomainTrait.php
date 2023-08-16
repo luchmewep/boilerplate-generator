@@ -13,6 +13,10 @@ use Illuminate\Support\Str;
 use InvalidArgumentException;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
+use function Laravel\Prompts\confirm;
+use function Laravel\Prompts\multiselect;
+use function Laravel\Prompts\select;
+use function Laravel\Prompts\text;
 
 /**
  * Trait UsesCommandVendorPackageDomainTrait
@@ -330,11 +334,14 @@ trait UsesCommandVendorPackageDomainTrait
                     ->map(function ($item) use ($choices) {
                         return array_search($item, $choices);
                     })
-                    ->filter(fn ($item) => $item !== false)
-                    ->implode(',');
+                    ->filter(fn ($item) => $item !== false);
             }
 
-            return $this->choice('Choose target '.($multiple ? 'packages' : 'package'), $choices, $default, null, $multiple);
+            if ($multiple) {
+                return multiselect(label: 'Choose target packages', options: $choices, default: $default);
+            }
+
+            return select(label: 'Choose target package', options: $choices, default: $default);
         }
 
         return null;
@@ -410,8 +417,7 @@ trait UsesCommandVendorPackageDomainTrait
 
                 $type = Str::lower($this->type) ?? 'file';
 
-                $this->failed("You need to specify the $type name.");
-                $this->input->setArgument('name', $this->ask("What is the name of the $type?"));
+                $this->input->setArgument('name', text("What is the name of the $type?"));
 
                 return $this->getNameInput();
             }
@@ -597,7 +603,7 @@ trait UsesCommandVendorPackageDomainTrait
 
         if (! $model_class || ! class_exists($model_class)) {
             // ask if the model should be generated instead
-            if ($model_class && $this->confirm("$model_class model does not exist. Do you want to generate it?", true)) {
+            if ($model_class && confirm(label: "$model_class model does not exist. Do you want to generate it?")) {
                 $args = $this->getPackageArgs();
                 $args['name'] = $model_class;
 
@@ -606,12 +612,11 @@ trait UsesCommandVendorPackageDomainTrait
 
             // or maybe choose from possible Eloquent models
             else {
-                $possible_models = starterKit()->getPossibleModels($this->package_dir, $this->domain_name);
+                $possible_models = starterKit()->getPossibleModels($this->package_dir, $this->domain_name)->collapse();
 
-                $model_class = $this->choice(
-                    'Choose alternative '.($option_name === 'parent' ? $option_name.' ' : null).'model',
-                    $possible_models->collapse()->toArray(),
-                    0
+                $model_class = select(
+                    label: 'Choose alternative '.($option_name === 'parent' ? $option_name.' ' : null).'model',
+                    options: $possible_models,
                 );
 
                 $this->input->setOption($option_name, $model_class);

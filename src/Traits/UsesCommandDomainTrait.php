@@ -7,6 +7,8 @@ use Luchavez\StarterKit\Traits\UsesCommandCustomMessagesTrait;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Symfony\Component\Console\Input\InputOption;
+use function Laravel\Prompts\select;
+use function Laravel\Prompts\text;
 
 /**
  * Trait UsesCommandDomainTrait
@@ -127,13 +129,13 @@ trait UsesCommandDomainTrait
             }
 
             $this->failed('Domain not found: '.$domain);
-            $choice = $this->choice(
-                'Choose what to do',
-                [
+            $choice = select(
+                label: 'Choose what to do',
+                options: [
                     'create new domain',
                     'choose from domains',
                 ],
-                0
+                default: 'create new domain'
             );
 
             if ($choice === 'create new domain') {
@@ -174,7 +176,7 @@ trait UsesCommandDomainTrait
      */
     protected function createNewDomain(string $domain, string $package_option_name, Collection $domain_choices = null, string $package_dir = null): string
     {
-        $domain = trim($this->ask('Enter new domain name', $domain));
+        $domain = text(label: 'Enter new domain name', placeholder: $domain, default: $domain, required: true);
 
         if ($domain === $this->default_domain) {
             $domain = null;
@@ -208,10 +210,10 @@ trait UsesCommandDomainTrait
     public function chooseFromDomains(Collection $domain_choices = null): string|null
     {
         if ($domain_choices &&
-            ($domain = $this->choice(
-                'Choose a domain',
-                $domain_choices->keys()->prepend($this->default_domain)->toArray(),
-                0
+            ($domain = select(
+                label: 'Choose a domain',
+                options: $domain_choices->keys()->prepend($this->default_domain)->toArray(),
+                default: 0
             ))
         ) {
             if ($domain === $this->default_domain) {

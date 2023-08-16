@@ -59,7 +59,7 @@ class InstallCommand extends Command
             $process->wait();
 
             if ($process->isSuccessful()) {
-                $this->done("Successfully installed <bold>$package</bold>");
+                $this->success("Successfully installed <bold>$package</bold>");
             } else {
                 $this->warning("Failed to install <bold>$package</bold>");
             }
@@ -82,7 +82,7 @@ class InstallCommand extends Command
             ]);
 
             $this->composer->dumpAutoloads();
-            $this->done("Successfully created <bold>$provider</bold>");
+            $this->success("Successfully created <bold>$provider</bold>");
         } else {
             $this->warning("<bold>$provider</bold> already exists. Skipped.");
         }
@@ -92,23 +92,21 @@ class InstallCommand extends Command
         $this->newLine();
         $this->ongoing("Initializing <bold>$pest</bold>");
         if (! file_exists(base_path('tests/Pest.php'))) {
-            $this->callSilently('pest:install', [
-                '--no-interaction' => true,
-            ]);
+            exec('./vendor/bin/pest --init');
 
             $this->composer->dumpAutoloads();
-            $this->done("Successfully initialized <bold>$pest</bold>");
+            $this->success("Successfully initialized <bold>$pest</bold>");
         } else {
             $this->warning("<bold>$pest</bold> is already initialized. Skipped.");
         }
 
         // Publish env variables
         $this->newLine();
-        $this->ongoing("Initializing <bold>$pest</bold>");
+        $this->ongoing("Publishing <bold>environment variables</bold>");
         $this->callSilently('bg:env:publish', [
             '--all' => true,
         ]);
-        $this->done("Successfully published the env variables");
+        $this->success("Successfully published the env variables");
 
         return self::SUCCESS;
     }

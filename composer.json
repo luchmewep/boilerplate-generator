@@ -1,6 +1,6 @@
 {
     "name": "luchavez/boilerplate-generator",
-    "description": "A boilerplate generator for building packages and implementing DDD for Laravel.",
+    "description": "A boilerplate generator for building packages and implementing DDD on Laravel 8|9|10.",
     "license": "MIT",
     "authors": [
         {
@@ -12,14 +12,15 @@
     "homepage": "https://github.com/luchavez-technologies/boilerplate-generator",
     "keywords": ["Laravel", "BoilerplateGenerator"],
     "require": {
-        "php": "^8.0",
+        "php": "^8.1",
         "illuminate/support": "~8|~9|~10",
         "jeroen-g/laravel-packager": "^2.9",
         "pestphp/pest-plugin-laravel": "^1.4|^2.0",
         "pestphp/pest-plugin-faker": "^1.0|^2.0",
         "knuckleswtf/scribe": "^4.19",
         "laravel/pint": "^1.5|^1.9",
-        "luchavez/starter-kit": "^1.0"
+        "luchavez/starter-kit": "^1.0",
+        "laravel/prompts": "^0.1.4"
     },
     "require-dev": {
         "roave/security-advisories": "dev-latest",

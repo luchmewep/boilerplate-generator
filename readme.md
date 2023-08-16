@@ -1,4 +1,4 @@
-# Boilerplate Generator
+# Boilerplate Generator for Laravel 8|9|10
 
 [![Latest Version on Packagist][ico-version]][link-packagist]
 [![Total Downloads][ico-downloads]][link-downloads]
@@ -16,9 +16,13 @@ With `luchavez/boilerplate-generator`, you can keep your Laravel app clean, stru
 ## Installation
 
 ```bash
-composer require luchavez/boilerplate-generator --dev
-php artisan bg:install            // executes a series of steps necessary to utilize the package
-php artisan bg:env:publish --all  // publishes predefined env variables to the `.env` file
+composer require luchavez/boilerplate-generator -W --dev
+
+// Execute a series of necessary steps to utilize the package
+php artisan bg:install
+
+// Publish env variables from packages and domains to the `.env` file
+php artisan bg:env:publish --all
 ```
 
 ## Usage
@@ -90,7 +94,6 @@ php artisan bg:env:publish --all  // publishes predefined env variables to the `
 
 | Name           | Command             | Description                                                         |
 |----------------|---------------------|---------------------------------------------------------------------|
-| AWS EB Configs | `bg:aws:publish`    | Publish all basic AWS related configuration for deployment.         |                            |
 | Describe       | `bg:describe`       | Display all information about Laravel app and/or package/s.         |                            |
 | Docs           | `bg:docs`           | Generate Scribe documentations.                                     |                            |
 | Env Variables  | `bg:env:publish`    | Publish all environment variables from root, packages, and domains. |                            |
@@ -114,7 +117,6 @@ If you discover any security related issues, please email jamescarloluchavez@gma
 ## Credits
 
 - [James Carlo Luchavez][link-author]
-- [All Contributors][link-contributors]
 
 ## License
 
@@ -126,4 +128,3 @@ MIT. Please see the [license file](license.md) for more information.
 [link-packagist]: https://packagist.org/packages/luchavez/boilerplate-generator
 [link-downloads]: https://packagist.org/packages/luchavez/boilerplate-generator
 [link-author]: https://github.com/luchavez-technologies
-[link-contributors]: ../../contributors
