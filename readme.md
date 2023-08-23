@@ -2,6 +2,7 @@
 
 [![Latest Version on Packagist][ico-version]][link-packagist]
 [![Total Downloads][ico-downloads]][link-downloads]
+[![Discord](https://img.shields.io/discord/1143744619956404295?color=8c9eff&label=Discord&logo=discord)](https://discord.gg/bFpDTgp3)
 
 ![Supercharge your Laravel App!](images/banner.png)
 
