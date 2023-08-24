@@ -2,7 +2,9 @@
 
 [![Latest Version on Packagist][ico-version]][link-packagist]
 [![Total Downloads][ico-downloads]][link-downloads]
-[![Discord](https://img.shields.io/discord/1143744619956404295?color=8c9eff&label=Discord&logo=discord)](https://discord.gg/bFpDTgp3)
+[![GitHub Repo stars][ico-stars]][link-stars]
+[![Discord][ico-discord]][link-discord]
+[![Twitter Follow][ico-twitter]][link-twitter]
 
 ![Supercharge your Laravel App!](images/banner.png)
 
@@ -123,9 +125,17 @@ If you discover any security related issues, please email jamescarloluchavez@gma
 
 MIT. Please see the [license file](license.md) for more information.
 
-[ico-version]: https://img.shields.io/packagist/v/luchavez/boilerplate-generator.svg?style=flat-square
-[ico-downloads]: https://img.shields.io/packagist/dt/luchavez/boilerplate-generator.svg?style=flat-square
+[ico-version]: https://img.shields.io/packagist/v/luchavez/boilerplate-generator.svg
+[ico-downloads]: https://img.shields.io/packagist/dt/luchavez/boilerplate-generator.svg
+[ico-stars]: https://img.shields.io/github/stars/luchavez-technologies/boilerplate-generator
+[ico-discord]: https://img.shields.io/discord/1143744619956404295?color=8c9eff&label=Discord&logo=discord
+[ico-twitter]: https://img.shields.io/twitter/follow/luchaveztech
 
 [link-packagist]: https://packagist.org/packages/luchavez/boilerplate-generator
+[link-downloads]: https://packagist.org/packages/luchavez/boilerplate-generator
+[link-stars]: https://github.com/luchavez-technologies/boilerplate-generator
+[link-discord]: https://discord.gg/bFpDTgp3
+[link-twitter]: https://twitter.com/luchaveztech
+
 [link-downloads]: https://packagist.org/packages/luchavez/boilerplate-generator
 [link-author]: https://github.com/luchavez-technologies
