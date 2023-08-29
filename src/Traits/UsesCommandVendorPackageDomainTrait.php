@@ -319,9 +319,7 @@ trait UsesCommandVendorPackageDomainTrait
         $choices = boilerplateGenerator()->getSummarizedPackages($filter, $is_local, $is_enabled, $is_loaded)->keys();
 
         if ($choices->count()) {
-            $choices = $choices
-                ->when($show_default_package, fn ($choices) => $choices->prepend($this->default_package))
-                ->toArray();
+            $choices = $choices->when($show_default_package, fn ($choices) => $choices->prepend($this->default_package));
 
             if ($show_default_package && ! count($default_choices)) {
                 $default_choices[] = $this->default_package;
@@ -330,18 +328,14 @@ trait UsesCommandVendorPackageDomainTrait
             $default = null;
 
             if (count($default_choices)) {
-                $default = collect($default_choices)
-                    ->map(function ($item) use ($choices) {
-                        return array_search($item, $choices);
-                    })
-                    ->filter(fn ($item) => $item !== false);
+                $default = collect($default_choices)->filter(fn ($item) => collect()->doesntContain($item));
             }
 
             if ($multiple) {
                 return multiselect(label: 'Choose target packages', options: $choices, default: $default);
             }
 
-            return select(label: 'Choose target package', options: $choices, default: $default);
+            return select(label: 'Choose target package', options: $choices, default: $default->first());
         }
 
         return null;

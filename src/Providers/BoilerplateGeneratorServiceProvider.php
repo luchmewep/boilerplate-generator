@@ -51,6 +51,7 @@ use Luchavez\BoilerplateGenerator\Console\Commands\PackageEnableCommand;
 use Luchavez\BoilerplateGenerator\Console\Commands\PackageListCommand;
 use Luchavez\BoilerplateGenerator\Console\Commands\PackagePublishCommand;
 use Luchavez\BoilerplateGenerator\Console\Commands\PackageRemoveCommand;
+use Luchavez\BoilerplateGenerator\Console\Commands\PestInstallCommand;
 use Luchavez\BoilerplateGenerator\Console\Commands\RepositoryMakeCommand;
 use Luchavez\BoilerplateGenerator\Console\Commands\RouteMakeCommand;
 use Luchavez\BoilerplateGenerator\Console\Commands\ScopeMakeCommand;
@@ -116,6 +117,7 @@ class BoilerplateGeneratorServiceProvider extends ServiceProvider
         InstallCommand::class,
         EnvPublishCommand::class,
         LaravelLogClearCommand::class,
+        PestInstallCommand::class,
 
         // Packages
         PackageCreateCommand::class,

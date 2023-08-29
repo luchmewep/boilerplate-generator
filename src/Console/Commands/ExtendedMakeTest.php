@@ -82,28 +82,38 @@ class ExtendedMakeTest extends TestMakeCommand
 
             // Check if Pest is already installed.
             // If not, install it.
-            if (is_null(guess_file_or_directory_path(
+            $file_location = guess_file_or_directory_path(
                 package_domain_tests_path($this->package_dir, $this->domain_dir),
                 'Pest.php'
-            ))
-            ) {
-                $this->call('pest:install', array_merge($args, [
-                    '--no-interaction' => true,
+            );
+
+            if (is_null($file_location)) {
+                $this->call('bg:pest:install', array_merge($args, [
+                    '--package' => $this->package_dir,
+                    '--domain' => $this->domain_name,
+                    '--no-interaction' => true
                 ]));
             }
 
+            // Sync options with args
+            $args = collect($this->options())->only(['unit', 'force', 'verbose', 'env'])
+                ->mapWithKeys(fn($item, $key) => ["--$key" => $item])
+                ->merge($args);
+
             // Generate Pest Test
-            $args['name'] = $name->jsonSerialize();
-            $this->call('pest:test', $args);
+            $args->put('name', $name->jsonSerialize());
+            $this->call('pest:test', $args->toArray());
 
             // Generate Dataset
-            $args['name'] = $name
+            $args->put('name', $name
                 ->replace('\\', '/')
                 ->afterLast('/')
                 ->before('Test')
-                ->jsonSerialize();
+                ->jsonSerialize());
 
-            $result = $this->call('pest:dataset', $args);
+            $args->forget(['--unit', '--force']);
+
+            $result = $this->call('pest:dataset', $args->toArray());
         } else {
             $result = parent::handle();
         }

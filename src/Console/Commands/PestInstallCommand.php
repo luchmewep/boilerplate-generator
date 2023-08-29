@@ -2,19 +2,20 @@
 
 namespace Luchavez\BoilerplateGenerator\Console\Commands;
 
+use Illuminate\Console\Command;
+use Illuminate\Support\Facades\File;
 use Luchavez\BoilerplateGenerator\Exceptions\MissingNameArgumentException;
 use Luchavez\BoilerplateGenerator\Exceptions\PackageNotFoundException;
 use Luchavez\BoilerplateGenerator\Traits\UsesCommandVendorPackageDomainTrait;
-use Illuminate\Console\Command;
-use Illuminate\Support\Facades\File;
+use Pest\TestSuite;
 use Symfony\Component\Console\Input\InputOption;
 
 /**
- * Class GitlabCIMakeCommand
+ * Class PestInstallCommand
  *
  * @author James Carlo Luchavez <jamescarloluchavez@gmail.com>
  */
-class GitlabCIMakeCommand extends Command
+class PestInstallCommand extends Command
 {
     use UsesCommandVendorPackageDomainTrait;
 
@@ -23,14 +24,14 @@ class GitlabCIMakeCommand extends Command
      *
      * @var string
      */
-    protected $name = 'bg:gitlab:publish';
+    protected $name = 'bg:pest:install';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Create a Gitlab CI YML file in a specific package.';
+    protected $description = 'Creates Pest resources in your current PHPUnit test suite';
 
     /**
      * Create a new console command instance.
@@ -55,23 +56,21 @@ class GitlabCIMakeCommand extends Command
     {
         $this->setVendorPackageDomain();
 
-        $file = '.gitlab-ci.yml';
+        $file = 'Pest.php';
 
-        $packagePath = package_domain_path($this->package_dir);
+        $target = package_domain_tests_path($this->package_dir, $this->domain_dir);
 
-        $source = __DIR__.'/../../../stubs/gitlab/'.$file;
+        $source = __DIR__.'/../../../stubs/pest';
 
-        $target = $packagePath.'/'.$file;
+        if ($this->option('force') || file_exists($target.'/'.$file) === false) {
+            File::copyDirectory($source, $target);
 
-        if ($this->option('force') || file_exists($target) === false) {
-            File::copy($source, $target);
-
-            $this->info('Gitlab file created successfully.');
+            $this->info('Pest installed successfully.');
 
             return self::SUCCESS;
         }
 
-        $this->warn('Gitlab file already exists!');
+        $this->warn('Pest installed already!');
 
         return self::FAILURE;
     }
