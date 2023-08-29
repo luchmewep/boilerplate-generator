@@ -92,8 +92,11 @@ class InstallCommand extends Command
         $this->newLine();
         $this->ongoing("Initializing <bold>$pest</bold>");
         if (! file_exists(base_path('tests/Pest.php'))) {
-            exec('./vendor/bin/pest --init');
-
+            $this->call('bg:pest:install', [
+                '--package' => 'none',
+                '--domain' => 'none',
+                '--no-interaction' => true
+            ]);
             $this->composer->dumpAutoloads();
             $this->success("Successfully initialized <bold>$pest</bold>");
         } else {

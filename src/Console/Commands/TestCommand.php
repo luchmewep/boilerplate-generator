@@ -10,6 +10,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Process\Process;
 
 /**
  * Class TestCommand
@@ -192,11 +193,15 @@ class TestCommand extends Command
             $test_directory = '--test-directory='.$tests_path;
         }
 
-        $command = collect(['php artisan test', $tests_path, $test_directory])->merge($this->collectRawOptions())->filter()->implode(' ');
+        $command = collect(['php', 'artisan', 'test', $tests_path, $test_directory])->merge($this->collectRawOptions())->filter();
 
-        $this->ongoing($get_blinking_icon('🏃').' Running command: '.$this->getBoldText($command), false);
+        $this->ongoing($get_blinking_icon('🏃').' Running command: '.$this->getBoldText($command->implode(' ')), false);
 
-        exec($command);
+        $process = new Process($command->toArray());
+        $process->setTty(true);
+        $process->run(function ($type, $buffer) {
+            echo $buffer;
+        });
     }
 
     /**

@@ -97,18 +97,12 @@ class PackageCreateCommand extends Command
             ]
         );
 
-        $test_directory = Str::of(package_domain_tests_path($this->package_dir))
-            ->after(str_replace('\\', '/', base_path()))
-            ->ltrim('/')
-            ->jsonSerialize();
-
-        $this->ongoing('Running command: php artisan pest:install --test-directory='.$test_directory, false);
-
         $this->call(
-            'pest:install',
+            'bg:pest:install',
             [
-                '--test-directory' => $test_directory,
-                '--no-interaction' => true,
+                '--package' => $this->package_dir,
+                '--domain' => $this->domain_name,
+                '--no-interaction' => true
             ]
         );
     }
