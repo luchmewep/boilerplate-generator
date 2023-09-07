@@ -2,14 +2,12 @@
 
 namespace Luchavez\BoilerplateGenerator\Console\Commands;
 
-use Illuminate\Console\OutputStyle;
 use Luchavez\BoilerplateGenerator\Traits\UsesCommandMultipleTargetsTrait;
 use Illuminate\Console\Command;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Symfony\Component\Console\Input\InputOption;
-use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Process\Process;
 
 /**
@@ -199,9 +197,7 @@ class TestCommand extends Command
 
         $process = new Process($command->toArray());
         $process->setTty(true);
-        $process->run(function ($type, $buffer) {
-            echo $buffer;
-        });
+        $process->run();
     }
 
     /**
