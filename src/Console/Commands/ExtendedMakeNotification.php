@@ -2,11 +2,11 @@
 
 namespace Luchavez\BoilerplateGenerator\Console\Commands;
 
+use Illuminate\Filesystem\Filesystem;
+use Illuminate\Foundation\Console\NotificationMakeCommand;
 use Luchavez\BoilerplateGenerator\Exceptions\MissingNameArgumentException;
 use Luchavez\BoilerplateGenerator\Exceptions\PackageNotFoundException;
 use Luchavez\BoilerplateGenerator\Traits\UsesCommandVendorPackageDomainTrait;
-use Illuminate\Filesystem\Filesystem;
-use Illuminate\Foundation\Console\NotificationMakeCommand;
 
 /**
  * Class ExtendedMakeNotification

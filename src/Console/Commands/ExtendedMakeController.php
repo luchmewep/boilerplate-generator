@@ -2,15 +2,15 @@
 
 namespace Luchavez\BoilerplateGenerator\Console\Commands;
 
-use Luchavez\BoilerplateGenerator\Exceptions\MissingNameArgumentException;
-use Luchavez\BoilerplateGenerator\Exceptions\PackageNotFoundException;
-use Luchavez\BoilerplateGenerator\Traits\UsesCommandVendorPackageDomainTrait;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Routing\Console\ControllerMakeCommand;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use JetBrains\PhpStorm\ArrayShape;
+use Luchavez\BoilerplateGenerator\Exceptions\MissingNameArgumentException;
+use Luchavez\BoilerplateGenerator\Exceptions\PackageNotFoundException;
+use Luchavez\BoilerplateGenerator\Traits\UsesCommandVendorPackageDomainTrait;
 use Symfony\Component\Console\Input\InputOption;
 
 /**
@@ -149,22 +149,22 @@ class ExtendedMakeController extends ControllerMakeCommand
             '{{parentModelVariable}}' => 'string',
         ]
     )]
- protected function buildParentReplacements(): array
- {
-     $parentModelClass = $this->getModelClass('parent');
+    protected function buildParentReplacements(): array
+    {
+        $parentModelClass = $this->getModelClass('parent');
 
-     return [
-         'ParentDummyFullModelClass' => $parentModelClass,
-         '{{ namespacedParentModel }}' => $parentModelClass,
-         '{{namespacedParentModel}}' => $parentModelClass,
-         'ParentDummyModelClass' => class_basename($parentModelClass),
-         '{{ parentModel }}' => class_basename($parentModelClass),
-         '{{parentModel}}' => class_basename($parentModelClass),
-         'ParentDummyModelVariable' => lcfirst(class_basename($parentModelClass)),
-         '{{ parentModelVariable }}' => lcfirst(class_basename($parentModelClass)),
-         '{{parentModelVariable}}' => lcfirst(class_basename($parentModelClass)),
-     ];
- }
+        return [
+            'ParentDummyFullModelClass' => $parentModelClass,
+            '{{ namespacedParentModel }}' => $parentModelClass,
+            '{{namespacedParentModel}}' => $parentModelClass,
+            'ParentDummyModelClass' => class_basename($parentModelClass),
+            '{{ parentModel }}' => class_basename($parentModelClass),
+            '{{parentModel}}' => class_basename($parentModelClass),
+            'ParentDummyModelVariable' => lcfirst(class_basename($parentModelClass)),
+            '{{ parentModelVariable }}' => lcfirst(class_basename($parentModelClass)),
+            '{{parentModelVariable}}' => lcfirst(class_basename($parentModelClass)),
+        ];
+    }
 
     /**
      * Build the model replacement values.

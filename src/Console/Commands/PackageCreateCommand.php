@@ -2,12 +2,11 @@
 
 namespace Luchavez\BoilerplateGenerator\Console\Commands;
 
+use Illuminate\Console\Command;
+use Illuminate\Support\Composer;
 use Luchavez\BoilerplateGenerator\Exceptions\MissingNameArgumentException;
 use Luchavez\BoilerplateGenerator\Exceptions\PackageNotFoundException;
 use Luchavez\BoilerplateGenerator\Traits\UsesCommandVendorPackageDomainTrait;
-use Illuminate\Console\Command;
-use Illuminate\Support\Composer;
-use Illuminate\Support\Str;
 use Symfony\Component\Console\Input\InputOption;
 
 /**
@@ -102,7 +101,7 @@ class PackageCreateCommand extends Command
             [
                 '--package' => $this->package_dir,
                 '--domain' => $this->domain_name,
-                '--no-interaction' => true
+                '--no-interaction' => true,
             ]
         );
     }

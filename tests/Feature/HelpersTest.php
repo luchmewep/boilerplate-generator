@@ -7,7 +7,7 @@ uses()->group('helpers');
 
 /***** PATHS *****/
 
-it('can create package-domain base path', function (string|null $package, string|null $domain, string|null $expected) {
+it('can create package-domain base path', function (?string $package, ?string $domain, ?string $expected) {
     expect(package_domain_path($package, $domain, true))
         ->toBe(base_path($expected))
         ->and(package_domain_path($package, $domain, true, false))
@@ -35,7 +35,7 @@ it('can create package-domain base path', function (string|null $package, string
     ],
 ])->group('base', 'path');
 
-it('can create package-domain app path', function (string|null $package, string|null $domain, string $expected) {
+it('can create package-domain app path', function (?string $package, ?string $domain, string $expected) {
     expect(package_domain_app_path($package, $domain, true))
         ->toBe(base_path($expected))
         ->and(package_domain_app_path($package, $domain, true, false))
@@ -63,7 +63,7 @@ it('can create package-domain app path', function (string|null $package, string|
     ],
 ])->group('app', 'path');
 
-it('can create package-domain database path', function (string|null $package, string|null $domain, string $expected) {
+it('can create package-domain database path', function (?string $package, ?string $domain, string $expected) {
     expect(package_domain_database_path($package, $domain, true))
         ->toBe(base_path($expected))
         ->and(package_domain_database_path($package, $domain, true, false))
@@ -91,7 +91,7 @@ it('can create package-domain database path', function (string|null $package, st
     ],
 ])->group('database', 'path');
 
-it('can create package-domain migrations path', function (string|null $package, string|null $domain, string $expected) {
+it('can create package-domain migrations path', function (?string $package, ?string $domain, string $expected) {
     expect(package_domain_migrations_path($package, $domain, true))
         ->toBe(base_path($expected))
         ->and(package_domain_migrations_path($package, $domain, true, false))
@@ -119,7 +119,7 @@ it('can create package-domain migrations path', function (string|null $package, 
     ],
 ])->group('migrations', 'path');
 
-it('can create package-domain seeders path', function (string|null $package, string|null $domain, string $expected) {
+it('can create package-domain seeders path', function (?string $package, ?string $domain, string $expected) {
     expect(package_domain_seeders_path($package, $domain, true))
         ->toBe(base_path($expected))
         ->and(package_domain_seeders_path($package, $domain, true, false))
@@ -147,7 +147,7 @@ it('can create package-domain seeders path', function (string|null $package, str
     ],
 ])->group('seeders', 'path');
 
-it('can create package-domain factories path', function (string|null $package, string|null $domain, string $expected) {
+it('can create package-domain factories path', function (?string $package, ?string $domain, string $expected) {
     expect(package_domain_factories_path($package, $domain, true))
         ->toBe(base_path($expected))
         ->and(package_domain_factories_path($package, $domain, true, false))
@@ -175,7 +175,7 @@ it('can create package-domain factories path', function (string|null $package, s
     ],
 ])->group('factories', 'path');
 
-it('can create package-domain resources path', function (string|null $package, string|null $domain, string $expected) {
+it('can create package-domain resources path', function (?string $package, ?string $domain, string $expected) {
     expect(package_domain_resources_path($package, $domain, true))
         ->toBe(base_path($expected))
         ->and(package_domain_resources_path($package, $domain, true, false))
@@ -203,7 +203,7 @@ it('can create package-domain resources path', function (string|null $package, s
     ],
 ])->group('resources', 'path');
 
-it('can create package-domain views path', function (string|null $package, string|null $domain, string $expected) {
+it('can create package-domain views path', function (?string $package, ?string $domain, string $expected) {
     expect(package_domain_views_path($package, $domain, true))
         ->toBe(base_path($expected))
         ->and(package_domain_views_path($package, $domain, true, false))
@@ -231,7 +231,7 @@ it('can create package-domain views path', function (string|null $package, strin
     ],
 ])->group('views', 'path');
 
-it('can create package-domain lang path', function (string|null $package, string|null $domain, string $expected) {
+it('can create package-domain lang path', function (?string $package, ?string $domain, string $expected) {
     expect(package_domain_lang_path($package, $domain, true))
         ->toBe(base_path($expected))
         ->and(package_domain_lang_path($package, $domain, true, false))
@@ -259,7 +259,7 @@ it('can create package-domain lang path', function (string|null $package, string
     ],
 ])->group('lang', 'path');
 
-it('can create package-domain tests path', function (string|null $package, string|null $domain, string $expected) {
+it('can create package-domain tests path', function (?string $package, ?string $domain, string $expected) {
     expect(package_domain_tests_path($package, $domain, true))
         ->toBe(base_path($expected))
         ->and(package_domain_tests_path($package, $domain, true, false))
@@ -287,7 +287,7 @@ it('can create package-domain tests path', function (string|null $package, strin
     ],
 ])->group('tests', 'path');
 
-it('can create package-domain routes path', function (string|null $package, string|null $domain, string $expected) {
+it('can create package-domain routes path', function (?string $package, ?string $domain, string $expected) {
     expect(package_domain_routes_path($package, $domain, true))
         ->toBe(base_path($expected))
         ->and(package_domain_routes_path($package, $domain, true, false))
@@ -315,7 +315,7 @@ it('can create package-domain routes path', function (string|null $package, stri
     ],
 ])->group('routes', 'path');
 
-it('can create package-domain config path', function (string|null $package, string|null $domain, string $expected) {
+it('can create package-domain config path', function (?string $package, ?string $domain, string $expected) {
     expect(package_domain_config_path($package, $domain, true))
         ->toBe(base_path($expected))
         ->and(package_domain_config_path($package, $domain, true, false))
@@ -343,7 +343,7 @@ it('can create package-domain config path', function (string|null $package, stri
     ],
 ])->group('config', 'path')->only();
 
-it('can create package-domain helpers path', function (string|null $package, string|null $domain, string $expected) {
+it('can create package-domain helpers path', function (?string $package, ?string $domain, string $expected) {
     expect(package_domain_helpers_path($package, $domain, true))
         ->toBe(base_path($expected))
         ->and(package_domain_helpers_path($package, $domain, true, false))
@@ -371,7 +371,7 @@ it('can create package-domain helpers path', function (string|null $package, str
     ],
 ])->group('helpers', 'path');
 
-it('can create package-domain domains path', function (string|null $package, string|null $domain, string $expected) {
+it('can create package-domain domains path', function (?string $package, ?string $domain, string $expected) {
     expect(package_domain_domains_path($package, $domain, true))
         ->toBe(base_path($expected))
         ->and(package_domain_domains_path($package, $domain, true, false))
@@ -401,7 +401,7 @@ it('can create package-domain domains path', function (string|null $package, str
 
 /***** NAMESPACES *****/
 
-it('can create package-domain base namespace', function (string|null $package, string|null $domain, string|null $expected) {
+it('can create package-domain base namespace', function (?string $package, ?string $domain, ?string $expected) {
     expect(package_domain_namespace($package, $domain, true))->toBe($expected);
 })->with([
     'both package and domain' => [
@@ -426,7 +426,7 @@ it('can create package-domain base namespace', function (string|null $package, s
     ],
 ])->group('base', 'namespace');
 
-it('can create package-domain app namespace', function (string|null $package, string|null $domain, string $expected) {
+it('can create package-domain app namespace', function (?string $package, ?string $domain, string $expected) {
     expect(package_domain_app_namespace($package, $domain, true))->toBe($expected);
 })->with([
     'both package and domain' => [
@@ -451,7 +451,7 @@ it('can create package-domain app namespace', function (string|null $package, st
     ],
 ])->group('app', 'namespace');
 
-it('can create package-domain database namespace', function (string|null $package, string|null $domain, string $expected) {
+it('can create package-domain database namespace', function (?string $package, ?string $domain, string $expected) {
     expect(package_domain_database_namespace($package, $domain, true))->toBe($expected);
 })->with([
     'both package and domain' => [
@@ -476,7 +476,7 @@ it('can create package-domain database namespace', function (string|null $packag
     ],
 ])->group('database', 'namespace');
 
-it('can create package-domain seeders namespace', function (string|null $package, string|null $domain, string $expected) {
+it('can create package-domain seeders namespace', function (?string $package, ?string $domain, string $expected) {
     expect(package_domain_seeders_namespace($package, $domain, true))->toBe($expected);
 })->with([
     'both package and domain' => [
@@ -501,7 +501,7 @@ it('can create package-domain seeders namespace', function (string|null $package
     ],
 ])->group('namespace', 'seeders');
 
-it('can create package-domain factories namespace', function (string|null $package, string|null $domain, string $expected) {
+it('can create package-domain factories namespace', function (?string $package, ?string $domain, string $expected) {
     expect(package_domain_factories_namespace($package, $domain, true))->toBe($expected);
 })->with([
     'both package and domain' => [
@@ -526,7 +526,7 @@ it('can create package-domain factories namespace', function (string|null $packa
     ],
 ])->group('namespace', 'factories');
 
-it('can create package-domain tests namespace', function (string|null $package, string|null $domain, string $expected) {
+it('can create package-domain tests namespace', function (?string $package, ?string $domain, string $expected) {
     expect(package_domain_tests_namespace($package, $domain, true))->toBe($expected);
 })->with([
     'both package and domain' => [
@@ -551,7 +551,7 @@ it('can create package-domain tests namespace', function (string|null $package, 
     ],
 ])->group('namespace', 'tests');
 
-it('can create package-domain domains namespace', function (string|null $package, string|null $domain, string $expected) {
+it('can create package-domain domains namespace', function (?string $package, ?string $domain, string $expected) {
     expect(package_domain_domains_namespace($package, $domain, true))->toBe($expected);
 })->with([
     'both package and domain' => [

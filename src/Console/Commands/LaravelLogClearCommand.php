@@ -2,8 +2,8 @@
 
 namespace Luchavez\BoilerplateGenerator\Console\Commands;
 
-use Luchavez\StarterKit\Traits\UsesCommandCustomMessagesTrait;
 use Illuminate\Console\Command;
+use Luchavez\StarterKit\Traits\UsesCommandCustomMessagesTrait;
 
 /**
  * Class LaravelLogClearCommand

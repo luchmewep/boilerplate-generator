@@ -2,21 +2,21 @@
 
 namespace Luchavez\BoilerplateGenerator\Traits;
 
-use Luchavez\BoilerplateGenerator\Console\Commands\PackageCloneCommand;
-use Luchavez\BoilerplateGenerator\Console\Commands\PackageCreateCommand;
-use Luchavez\BoilerplateGenerator\Exceptions\MissingNameArgumentException;
-use Luchavez\BoilerplateGenerator\Exceptions\PackageNotFoundException;
 use Illuminate\Console\GeneratorCommand;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use InvalidArgumentException;
-use Symfony\Component\Console\Input\InputArgument;
-use Symfony\Component\Console\Input\InputOption;
 use function Laravel\Prompts\confirm;
 use function Laravel\Prompts\multiselect;
 use function Laravel\Prompts\select;
 use function Laravel\Prompts\text;
+use Luchavez\BoilerplateGenerator\Console\Commands\PackageCloneCommand;
+use Luchavez\BoilerplateGenerator\Console\Commands\PackageCreateCommand;
+use Luchavez\BoilerplateGenerator\Exceptions\MissingNameArgumentException;
+use Luchavez\BoilerplateGenerator\Exceptions\PackageNotFoundException;
+use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputOption;
 
 /**
  * Trait UsesCommandVendorPackageDomainTrait
@@ -290,7 +290,7 @@ trait UsesCommandVendorPackageDomainTrait
     /**
      * @return string|null
      */
-    public function getPackageFromArguments(): string|null
+    public function getPackageFromArguments(): ?string
     {
         return $this->hasPackageAsArgument() ?
             trim($this->argument($this->package_option_argument_name), '/') :
@@ -309,9 +309,9 @@ trait UsesCommandVendorPackageDomainTrait
      */
     public function choosePackageFromList(
         string|array $filter = null,
-        bool|null $is_local = true,
-        bool|null $is_enabled = null,
-        bool|null $is_loaded = null,
+        ?bool $is_local = true,
+        bool $is_enabled = null,
+        bool $is_loaded = null,
         bool $show_default_package = true,
         bool $multiple = false,
         array $default_choices = []

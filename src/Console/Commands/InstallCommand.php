@@ -2,10 +2,10 @@
 
 namespace Luchavez\BoilerplateGenerator\Console\Commands;
 
-use Luchavez\StarterKit\Traits\UsesCommandCustomMessagesTrait;
 use Illuminate\Console\Command;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Composer;
+use Luchavez\StarterKit\Traits\UsesCommandCustomMessagesTrait;
 
 /**
  * Class InstallCommand
@@ -95,7 +95,7 @@ class InstallCommand extends Command
             $this->call('bg:pest:install', [
                 '--package' => 'none',
                 '--domain' => 'none',
-                '--no-interaction' => true
+                '--no-interaction' => true,
             ]);
             $this->composer->dumpAutoloads();
             $this->success("Successfully initialized <bold>$pest</bold>");
@@ -105,11 +105,11 @@ class InstallCommand extends Command
 
         // Publish env variables
         $this->newLine();
-        $this->ongoing("Publishing <bold>environment variables</bold>");
+        $this->ongoing('Publishing <bold>environment variables</bold>');
         $this->callSilently('bg:env:publish', [
             '--all' => true,
         ]);
-        $this->success("Successfully published the env variables");
+        $this->success('Successfully published the env variables');
 
         return self::SUCCESS;
     }

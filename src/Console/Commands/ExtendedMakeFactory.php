@@ -2,13 +2,13 @@
 
 namespace Luchavez\BoilerplateGenerator\Console\Commands;
 
-use Luchavez\BoilerplateGenerator\Exceptions\MissingNameArgumentException;
-use Luchavez\BoilerplateGenerator\Exceptions\PackageNotFoundException;
-use Luchavez\BoilerplateGenerator\Traits\UsesCommandEloquentModelTrait;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Database\Console\Factories\FactoryMakeCommand;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Str;
+use Luchavez\BoilerplateGenerator\Exceptions\MissingNameArgumentException;
+use Luchavez\BoilerplateGenerator\Exceptions\PackageNotFoundException;
+use Luchavez\BoilerplateGenerator\Traits\UsesCommandEloquentModelTrait;
 
 /**
  * Class ExtendedMakeFactory

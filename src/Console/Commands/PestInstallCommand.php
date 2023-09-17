@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\File;
 use Luchavez\BoilerplateGenerator\Exceptions\MissingNameArgumentException;
 use Luchavez\BoilerplateGenerator\Exceptions\PackageNotFoundException;
 use Luchavez\BoilerplateGenerator\Traits\UsesCommandVendorPackageDomainTrait;
-use Pest\TestSuite;
 use Symfony\Component\Console\Input\InputOption;
 
 /**

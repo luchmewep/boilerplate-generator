@@ -2,13 +2,13 @@
 
 namespace Luchavez\BoilerplateGenerator\Console\Commands;
 
-use Luchavez\BoilerplateGenerator\Exceptions\MissingNameArgumentException;
-use Luchavez\BoilerplateGenerator\Exceptions\PackageNotFoundException;
-use Luchavez\BoilerplateGenerator\Traits\UsesCommandVendorPackageDomainTrait;
 use Illuminate\Console\Command;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Composer;
 use Illuminate\Support\Str;
+use Luchavez\BoilerplateGenerator\Exceptions\MissingNameArgumentException;
+use Luchavez\BoilerplateGenerator\Exceptions\PackageNotFoundException;
+use Luchavez\BoilerplateGenerator\Traits\UsesCommandVendorPackageDomainTrait;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 
@@ -229,7 +229,7 @@ class DomainEnableCommand extends Command
      * @param  string  $domain
      * @return array
      */
-    protected function createPsr4ContentsForComposerJson(string|null $path, string $domain): array
+    protected function createPsr4ContentsForComposerJson(?string $path, string $domain): array
     {
         $path_only = Str::before($path, 'composer.json');
 

@@ -2,12 +2,12 @@
 
 namespace Luchavez\BoilerplateGenerator\Console\Commands;
 
-use Luchavez\BoilerplateGenerator\Exceptions\MissingNameArgumentException;
-use Luchavez\BoilerplateGenerator\Exceptions\PackageNotFoundException;
-use Luchavez\BoilerplateGenerator\Traits\UsesCommandVendorPackageDomainTrait;
 use Illuminate\Database\Console\Seeds\SeederMakeCommand;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Str;
+use Luchavez\BoilerplateGenerator\Exceptions\MissingNameArgumentException;
+use Luchavez\BoilerplateGenerator\Exceptions\PackageNotFoundException;
+use Luchavez\BoilerplateGenerator\Traits\UsesCommandVendorPackageDomainTrait;
 
 /**
  * Class ExtendedMakeSeeder

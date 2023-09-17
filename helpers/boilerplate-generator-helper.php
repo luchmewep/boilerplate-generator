@@ -6,10 +6,10 @@
  * @since  2021-11-09
  */
 
-use Luchavez\BoilerplateGenerator\Services\BoilerplateGenerator;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
+use Luchavez\BoilerplateGenerator\Services\BoilerplateGenerator;
 
 if (! function_exists('boilerplateGenerator')) {
     /**
@@ -48,7 +48,7 @@ if (! function_exists('package_domain_path')) {
         string $domain = null,
         bool $parse_domain = false,
         bool $with_base_path = true
-    ): string|null {
+    ): ?string {
         $package = trim($package, '/');
         $domain = $domain ? trim($parse_domain ? domain_decode($domain) : $domain, '/') : null;
 
@@ -355,7 +355,7 @@ if (! function_exists('package_domain_namespace')) {
     function package_domain_namespace(
         string $package = null,
         string $domain = null
-    ): string|null {
+    ): ?string {
         $vendor_name = $package_name = null;
 
         if ($package) {
@@ -559,7 +559,7 @@ if (! function_exists('remove_contents_from_composer_json')) {
      */
     function remove_contents_from_composer_json(
         string $dot_notation_key,
-        array|string|bool|null $contents = null,
+        array|string|bool $contents = null,
         string $path = null
     ): bool {
         $path = qualify_composer_json($path);

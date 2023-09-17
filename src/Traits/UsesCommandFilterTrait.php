@@ -54,7 +54,7 @@ trait UsesCommandFilterTrait
      * @param  string  $key
      * @return bool|null
      */
-    protected function validateBoolean(string $key): bool|null
+    protected function validateBoolean(string $key): ?bool
     {
         if ($option = $this->option($key)) {
             return filter_var($option, FILTER_VALIDATE_BOOLEAN);

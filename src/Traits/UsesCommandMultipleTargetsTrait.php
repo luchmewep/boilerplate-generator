@@ -17,12 +17,12 @@ trait UsesCommandMultipleTargetsTrait
     /**
      * @var array|null
      */
-    protected array|null $targets = null;
+    protected ?array $targets = null;
 
     /**
      * @var string|null
      */
-    protected string|null $domain_search = null;
+    protected ?string $domain_search = null;
 
     /**
      * @param  string  $option_name
