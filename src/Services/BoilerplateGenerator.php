@@ -2,11 +2,11 @@
 
 namespace Luchavez\BoilerplateGenerator\Services;
 
-use Luchavez\StarterKit\Services\StarterKit;
-use Luchavez\StarterKit\Traits\HasTaggableCacheTrait;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
+use Luchavez\StarterKit\Services\StarterKit;
+use Luchavez\StarterKit\Traits\HasTaggableCacheTrait;
 
 /**
  * Class BoilerplateGenerator
@@ -244,6 +244,7 @@ class BoilerplateGenerator
             $found = collect(File::directories($path))
                 ->mapWithKeys(function ($path) {
                     $path = str_replace('\\', '/', $path);
+
                     return [domain_encode($path) => $path];
                 });
 

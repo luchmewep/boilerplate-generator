@@ -2,12 +2,12 @@
 
 namespace Luchavez\BoilerplateGenerator\Console\Commands;
 
-use Luchavez\BoilerplateGenerator\Traits\UsesCommandMultipleTargetsTrait;
-use Luchavez\StarterKit\Abstracts\BaseStarterKitServiceProvider;
-use Luchavez\StarterKit\Services\StarterKit;
 use Illuminate\Console\Command;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
+use Luchavez\BoilerplateGenerator\Traits\UsesCommandMultipleTargetsTrait;
+use Luchavez\StarterKit\Abstracts\BaseStarterKitServiceProvider;
+use Luchavez\StarterKit\Services\StarterKit;
 use Symfony\Component\Console\Helper\TableSeparator;
 
 /**

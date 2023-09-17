@@ -3,10 +3,10 @@
 namespace Luchavez\BoilerplateGenerator\Console\Commands;
 
 use Illuminate\Support\Collection;
+use function Laravel\Prompts\confirm;
 use Luchavez\BoilerplateGenerator\Exceptions\MissingNameArgumentException;
 use Luchavez\BoilerplateGenerator\Exceptions\PackageNotFoundException;
 use Symfony\Component\Console\Input\InputOption;
-use function Laravel\Prompts\confirm;
 
 /**
  * Class DomainDisableCommand
@@ -50,9 +50,11 @@ class DomainDisableCommand extends DomainEnableCommand
         // Fail if not found or already disabled
         if (! $domain) {
             $this->failed('Domain not found: '.$this->domain_name);
+
             return self::FAILURE;
         } elseif (! $domain['is_enabled'] && ! $domain['is_loaded']) {
             $this->failed('Domain is already disabled: '.$this->domain_name);
+
             return self::FAILURE;
         }
 
@@ -85,6 +87,7 @@ class DomainDisableCommand extends DomainEnableCommand
                 });
             } else {
                 $this->failed('Failed to disable domain as one or more child domains are not still enabled.');
+
                 return self::FAILURE;
             }
         }

@@ -2,11 +2,11 @@
 
 namespace Luchavez\BoilerplateGenerator\Console\Commands;
 
+use Illuminate\Console\GeneratorCommand;
+use Illuminate\Filesystem\Filesystem;
 use Luchavez\BoilerplateGenerator\Exceptions\MissingNameArgumentException;
 use Luchavez\BoilerplateGenerator\Exceptions\PackageNotFoundException;
 use Luchavez\BoilerplateGenerator\Traits\UsesCommandVendorPackageDomainTrait;
-use Illuminate\Console\GeneratorCommand;
-use Illuminate\Filesystem\Filesystem;
 use Symfony\Component\Console\Input\InputArgument;
 
 /**
@@ -56,7 +56,7 @@ class DomainCreateCommand extends GeneratorCommand
      *
      * @throws MissingNameArgumentException|PackageNotFoundException
      */
-    public function handle(): bool|null
+    public function handle(): ?bool
     {
         $this->setVendorPackageDomain(show_domain_choices: false);
 

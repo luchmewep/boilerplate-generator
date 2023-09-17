@@ -2,11 +2,11 @@
 
 namespace Luchavez\BoilerplateGenerator\Console\Commands;
 
-use Luchavez\BoilerplateGenerator\Traits\UsesCommandMultipleTargetsTrait;
 use Illuminate\Console\Command;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
+use Luchavez\BoilerplateGenerator\Traits\UsesCommandMultipleTargetsTrait;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Process\Process;
 

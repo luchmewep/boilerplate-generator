@@ -2,10 +2,10 @@
 
 namespace Luchavez\BoilerplateGenerator\Console\Commands;
 
-use Luchavez\BoilerplateGenerator\Traits\UsesCommandMultipleTargetsTrait;
-use Luchavez\StarterKit\Data\ServiceProviderData;
 use Illuminate\Console\Command;
 use Illuminate\Support\Collection;
+use Luchavez\BoilerplateGenerator\Traits\UsesCommandMultipleTargetsTrait;
+use Luchavez\StarterKit\Data\ServiceProviderData;
 
 /**
  * Class EnvPublishCommand

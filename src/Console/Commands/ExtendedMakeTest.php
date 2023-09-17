@@ -2,13 +2,13 @@
 
 namespace Luchavez\BoilerplateGenerator\Console\Commands;
 
-use Luchavez\BoilerplateGenerator\Exceptions\MissingNameArgumentException;
-use Luchavez\BoilerplateGenerator\Exceptions\PackageNotFoundException;
-use Luchavez\BoilerplateGenerator\Traits\UsesCommandEloquentModelTrait;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Foundation\Console\TestMakeCommand;
 use Illuminate\Support\Str;
+use Luchavez\BoilerplateGenerator\Exceptions\MissingNameArgumentException;
+use Luchavez\BoilerplateGenerator\Exceptions\PackageNotFoundException;
+use Luchavez\BoilerplateGenerator\Traits\UsesCommandEloquentModelTrait;
 
 /**
  * Class ExtendedMakeTest
@@ -83,13 +83,13 @@ class ExtendedMakeTest extends TestMakeCommand
 
             if (is_null($file_location)) {
                 $this->call('bg:pest:install', array_merge($this->getPackageArgs(), [
-                    '--no-interaction' => true
+                    '--no-interaction' => true,
                 ]));
             }
 
             // Generate Pest Test
             $args = collect($this->options())->only(['unit', 'force', 'verbose', 'env'])
-                ->mapWithKeys(fn($item, $key) => ["--$key" => $item]);
+                ->mapWithKeys(fn ($item, $key) => ["--$key" => $item]);
             $args['--test-directory'] = Str::of($path)
                 ->after(base_path())
                 ->replace('\\', '/')

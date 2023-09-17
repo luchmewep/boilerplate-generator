@@ -72,7 +72,7 @@ trait UsesCommandServiceTrait
     /**
      * @return string|null
      */
-    protected function getServiceFromOptions(): string|null
+    protected function getServiceFromOptions(): ?string
     {
         return $this->option('service');
     }

@@ -2,11 +2,11 @@
 
 namespace Luchavez\BoilerplateGenerator\Console\Commands;
 
+use Illuminate\Database\Console\Migrations\MigrateMakeCommand;
 use Luchavez\BoilerplateGenerator\Exceptions\MissingNameArgumentException;
 use Luchavez\BoilerplateGenerator\Exceptions\PackageNotFoundException;
 use Luchavez\BoilerplateGenerator\Services\ExtendedMigrationCreator;
 use Luchavez\BoilerplateGenerator\Traits\UsesCommandVendorPackageDomainTrait;
-use Illuminate\Database\Console\Migrations\MigrateMakeCommand;
 
 /**
  * Class ExtendedMakeMigration

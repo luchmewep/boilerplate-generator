@@ -2,9 +2,9 @@
 
 namespace Luchavez\BoilerplateGenerator\Console\Commands;
 
+use Illuminate\Console\Command;
 use Luchavez\BoilerplateGenerator\Traits\UsesCommandFilterTrait;
 use Luchavez\StarterKit\Traits\UsesCommandCustomMessagesTrait;
-use Illuminate\Console\Command;
 
 /**
  * Class PackageListCommand

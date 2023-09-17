@@ -2,13 +2,13 @@
 
 namespace Luchavez\BoilerplateGenerator\Traits;
 
-use Luchavez\BoilerplateGenerator\Console\Commands\RouteMakeCommand;
-use Luchavez\StarterKit\Traits\UsesCommandCustomMessagesTrait;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
-use Symfony\Component\Console\Input\InputOption;
 use function Laravel\Prompts\select;
 use function Laravel\Prompts\text;
+use Luchavez\BoilerplateGenerator\Console\Commands\RouteMakeCommand;
+use Luchavez\StarterKit\Traits\UsesCommandCustomMessagesTrait;
+use Symfony\Component\Console\Input\InputOption;
 
 /**
  * Trait UsesCommandDomainTrait
@@ -162,7 +162,7 @@ trait UsesCommandDomainTrait
      * @param  string|null  $name
      * @return string|null
      */
-    protected function qualifyDomainName(string|null $name): string|null
+    protected function qualifyDomainName(?string $name): ?string
     {
         return trim(preg_replace('/[^a-z\d]+/i', '.', $name), '.');
     }
@@ -207,7 +207,7 @@ trait UsesCommandDomainTrait
      * @param  Collection|null  $domain_choices
      * @return string|null
      */
-    public function chooseFromDomains(Collection $domain_choices = null): string|null
+    public function chooseFromDomains(Collection $domain_choices = null): ?string
     {
         if ($domain_choices &&
             ($domain = select(
