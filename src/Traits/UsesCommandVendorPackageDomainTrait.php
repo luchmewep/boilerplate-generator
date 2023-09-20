@@ -650,11 +650,11 @@ trait UsesCommandVendorPackageDomainTrait
         $app_path = package_domain_app_path($this->package_dir, $this->domain_dir);
 
         $name = Str::of($path)
+            ->replace('\\', '/')
             ->after($app_path)
             ->beforeLast('.php');
 
         $args['name'] = $name->append('Test')
-            ->replace('\\', '/')
             ->ltrim('/')
             ->jsonSerialize();
 
