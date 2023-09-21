@@ -64,19 +64,23 @@ class ExtendedMakeModel extends ModelMakeCommand
 
         if ($this->option('all')) {
             $this->input->setOption('observer', true);
+            $this->input->setOption('repository', true);
+            $this->input->setOption('df', true);
         }
 
         parent::handle();
-
-        // Clear starter kit cache and run composer dump
-        $this->composer->dumpAutoloads();
 
         if ($this->option('observer')) {
             $this->createObserver();
         }
 
-        $this->createRepository();
-        $this->createDataFactory();
+        if ($this->option('repository')) {
+            $this->createRepository();
+        }
+
+        if ($this->option('df')) {
+            $this->createDataFactory();
+        }
     }
 
     /**

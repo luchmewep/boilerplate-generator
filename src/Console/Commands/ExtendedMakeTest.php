@@ -91,7 +91,7 @@ class ExtendedMakeTest extends TestMakeCommand
             $args = collect($this->options())->only(['unit', 'force', 'verbose', 'env'])
                 ->mapWithKeys(fn ($item, $key) => ["--$key" => $item]);
             $args['--test-directory'] = Str::of($path)
-                ->after(base_path())
+                ->after(package_domain_path())
                 ->replace('\\', '/')
                 ->ltrim('/')
                 ->jsonSerialize();
