@@ -49,7 +49,7 @@ if (! function_exists('package_domain_path')) {
         bool $parse_domain = false,
         bool $with_base_path = true
     ): ?string {
-        $package = trim($package, '/');
+        $package = $package ? trim($package, '/') : null;
         $domain = $domain ? trim($parse_domain ? domain_decode($domain) : $domain, '/') : null;
 
         $path = collect()
