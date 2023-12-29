@@ -111,6 +111,15 @@ class InstallCommand extends Command
         ]);
         $this->success('Successfully published the env variables');
 
+        // Generate PHPDoc generation for Laravel Facades
+        $command = 'ide-helper:generate';
+        $this->newLine();
+        $this->ongoing("Running <bold>$command</bold> from <bold>barryvdh/laravel-ide-helper</bold>");
+        // bootstrap/compiled.php has to be cleared first, so run php artisan clear-compiled before generating
+        $this->callSilently('clear-compiled');
+        $this->call($command);
+        $this->success('Successfully generated the PHPDoc for Laravel Facades');
+
         return self::SUCCESS;
     }
 }

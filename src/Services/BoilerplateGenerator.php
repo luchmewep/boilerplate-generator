@@ -201,7 +201,7 @@ class BoilerplateGenerator
      * @param  bool  $with_details
      * @return Collection
      */
-    public function getSummarizedPackages(string|array $filter = null, bool $is_local = null, bool $is_enabled = null, bool $is_loaded = null, bool $with_details = false): Collection
+    public function getSummarizedPackages(string|array|null $filter = null, ?bool $is_local = null, ?bool $is_enabled = null, ?bool $is_loaded = null, bool $with_details = false): Collection
     {
         $loaded = $this->getLoadedPackages($with_details);
         $local = $this->getLocalPackages();
@@ -229,7 +229,7 @@ class BoilerplateGenerator
      * @param  Collection|null  $domains
      * @return Collection
      */
-    public function getLocalDomains(string $package = null, string $domain = null, Collection &$domains = null): Collection
+    public function getLocalDomains(?string $package = null, ?string $domain = null, ?Collection &$domains = null): Collection
     {
         // If a package is not inside root packages folder then return null.
         if ($package && ! $this->isPackageLocal($package)) {
@@ -266,7 +266,7 @@ class BoilerplateGenerator
      * @param  string|null  $package
      * @return bool
      */
-    public function isDomainLocal(string $domain, string $package = null): bool
+    public function isDomainLocal(string $domain, ?string $package = null): bool
     {
         return $this->getLocalDomains($package)->has($domain);
     }
@@ -277,7 +277,7 @@ class BoilerplateGenerator
      * @param  string|null  $package
      * @return Collection
      */
-    public function getEnabledDomains(string $package = null): Collection
+    public function getEnabledDomains(?string $package = null): Collection
     {
         if ($package) {
             $res = $this->getSummarizedPackages()->get($package);
@@ -303,7 +303,7 @@ class BoilerplateGenerator
      * @param  string|null  $package
      * @return bool
      */
-    public function isDomainEnabled(string $domain, string $package = null): bool
+    public function isDomainEnabled(string $domain, ?string $package = null): bool
     {
         return $this->getEnabledDomains($package)->has($domain);
     }
@@ -314,7 +314,7 @@ class BoilerplateGenerator
      * @param  string|null  $package
      * @return Collection
      */
-    public function getLoadedDomains(string $package = null): Collection
+    public function getLoadedDomains(?string $package = null): Collection
     {
         return starterKit()->getDomains($package) ?? collect();
     }
@@ -326,7 +326,7 @@ class BoilerplateGenerator
      * @param  string|null  $package
      * @return bool
      */
-    public function isDomainLoaded(string $domain, string $package = null): bool
+    public function isDomainLoaded(string $domain, ?string $package = null): bool
     {
         return $this->getLoadedDomains($package)->has($domain);
     }
@@ -341,11 +341,11 @@ class BoilerplateGenerator
      * @return Collection
      */
     public function getSummarizedDomains(
-        string $package = null,
-        string|array $filter = null,
-        bool $is_local = null,
-        bool $is_enabled = null,
-        bool $is_loaded = null,
+        ?string $package = null,
+        string|array|null $filter = null,
+        ?bool $is_local = null,
+        ?bool $is_enabled = null,
+        ?bool $is_loaded = null,
         bool $with_providers = false,
     ): Collection {
         $local = $this->getLocalDomains($package);
@@ -374,7 +374,7 @@ class BoilerplateGenerator
      * @param  string|null  $package
      * @return bool
      */
-    public function isDomainExisting(string $domain, string $package = null): bool
+    public function isDomainExisting(string $domain, ?string $package = null): bool
     {
         return $this->getSummarizedDomains($package)->has($domain);
     }
@@ -391,10 +391,10 @@ class BoilerplateGenerator
      */
     public function getParentDomains(
         string $domain,
-        string $package = null,
-        bool $is_local = null,
-        bool $is_enabled = null,
-        bool $is_loaded = null,
+        ?string $package = null,
+        ?bool $is_local = null,
+        ?bool $is_enabled = null,
+        ?bool $is_loaded = null,
         bool $with_providers = false,
         bool $with_child = false,
     ): Collection {
@@ -422,10 +422,10 @@ class BoilerplateGenerator
      */
     public function getSubDomains(
         string $domain,
-        string $package = null,
-        bool $is_local = null,
-        bool $is_enabled = null,
-        bool $is_loaded = null,
+        ?string $package = null,
+        ?bool $is_local = null,
+        ?bool $is_enabled = null,
+        ?bool $is_loaded = null,
         bool $with_providers = false,
         bool $with_parent = false,
     ): Collection {

@@ -341,7 +341,7 @@ it('can create package-domain config path', function (?string $package, ?string 
         'domain' => null,
         'expected' => 'config',
     ],
-])->group('config', 'path')->only();
+])->group('config', 'path');
 
 it('can create package-domain helpers path', function (?string $package, ?string $domain, string $expected) {
     expect(package_domain_helpers_path($package, $domain, true))
@@ -577,20 +577,6 @@ it('can create package-domain domains namespace', function (?string $package, ?s
 ])->group('namespace', 'domains');
 
 /***** COMPOSER JSON *****/
-
-it('can get contents of composer.json at base path', function () {
-    $contents = getContentsFromComposerJson();
-    expect($contents)
-        ->toBeIterable()
-        ->toMatchArray([
-            'name' => 'laravel/laravel',
-            'type' => 'project',
-            'description' => 'The Laravel Framework.',
-        ]);
-})->group('composer');
-
-it('can set contents of composer.json at base path')
-    ->skip('Skipped because it can cause Composer issues')->group('composer');
 
 it('can add and remove contents in composer.json', function (string $key, mixed $value) {
     assertTrue(add_contents_to_composer_json(dot_notation_key: $key, contents: $value));

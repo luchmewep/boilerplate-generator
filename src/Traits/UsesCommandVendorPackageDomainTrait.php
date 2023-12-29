@@ -7,10 +7,6 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use InvalidArgumentException;
-use function Laravel\Prompts\confirm;
-use function Laravel\Prompts\multiselect;
-use function Laravel\Prompts\select;
-use function Laravel\Prompts\text;
 use Luchavez\BoilerplateGenerator\Console\Commands\PackageCloneCommand;
 use Luchavez\BoilerplateGenerator\Console\Commands\PackageCreateCommand;
 use Luchavez\BoilerplateGenerator\Exceptions\MissingNameArgumentException;
@@ -184,10 +180,10 @@ trait UsesCommandVendorPackageDomainTrait
         bool $show_package_choices = true,
         bool $show_domain_choices = true,
         bool $show_default_package = true,
-        array|string $filter = null,
+        array|string|null $filter = null,
         bool $is_local = true,
-        bool $is_enabled = null,
-        bool $is_loaded = null
+        ?bool $is_enabled = null,
+        ?bool $is_loaded = null
     ): void {
         // Set Author Information
         $this->setAuthorInformationOnStub();
@@ -308,10 +304,10 @@ trait UsesCommandVendorPackageDomainTrait
      * @return array|string|null
      */
     public function choosePackageFromList(
-        string|array $filter = null,
+        string|array|null $filter = null,
         ?bool $is_local = true,
-        bool $is_enabled = null,
-        bool $is_loaded = null,
+        ?bool $is_enabled = null,
+        ?bool $is_loaded = null,
         bool $show_default_package = true,
         bool $multiple = false,
         array $default_choices = []
@@ -328,14 +324,14 @@ trait UsesCommandVendorPackageDomainTrait
             $default = null;
 
             if (count($default_choices)) {
-                $default = collect($default_choices)->filter(fn ($item) => collect()->doesntContain($item));
+                $default = collect($default_choices)
+                    ->filter(fn ($item) => $choices->contains($item))
+                    ->join(',');
             }
 
-            if ($multiple) {
-                return multiselect(label: 'Choose target packages', options: $choices, default: $default);
-            }
+            $question = 'Choose target '.($multiple ? 'packages' : 'package');
 
-            return select(label: 'Choose target package', options: $choices, default: $default->first());
+            return $this->choice(question: $question, choices: $choices->toArray(), default: $default, multiple: $multiple);
         }
 
         return null;
@@ -411,7 +407,7 @@ trait UsesCommandVendorPackageDomainTrait
 
                 $type = Str::lower($this->type) ?? 'file';
 
-                $this->input->setArgument('name', text("What is the name of the $type?"));
+                $this->input->setArgument('name', $this->ask(question: "What is the name of the $type?"));
 
                 return $this->getNameInput();
             }
@@ -495,7 +491,7 @@ trait UsesCommandVendorPackageDomainTrait
      * @param  string|null  $classType
      * @return Collection
      */
-    protected function addMoreCasedReplaceNamespace(string $namespacedClass, string $classType = null): Collection
+    protected function addMoreCasedReplaceNamespace(string $namespacedClass, ?string $classType = null): Collection
     {
         $class = Str::of($namespacedClass)->afterLast('\\')->studly();
 
@@ -597,7 +593,7 @@ trait UsesCommandVendorPackageDomainTrait
 
         if (! $model_class || ! class_exists($model_class)) {
             // ask if the model should be generated instead
-            if ($model_class && confirm(label: "$model_class model does not exist. Do you want to generate it?")) {
+            if ($model_class && $this->confirm(question: "$model_class model does not exist. Do you want to generate it?")) {
                 $args = $this->getPackageArgs();
                 $args['name'] = $model_class;
 
@@ -606,11 +602,11 @@ trait UsesCommandVendorPackageDomainTrait
 
             // or maybe choose from possible Eloquent models
             else {
-                $possible_models = starterKit()->getPossibleModels($this->package_dir, $this->domain_name)->collapse();
+                $possible_models = starterKit()->getPossibleModels($this->package_dir, $this->domain_name)?->collapse()->toArray();
 
-                $model_class = select(
-                    label: 'Choose alternative '.($option_name === 'parent' ? $option_name.' ' : null).'model',
-                    options: $possible_models,
+                $model_class = $this->choice(
+                    question: 'Choose alternative '.($option_name === 'parent' ? $option_name.' ' : null).'model',
+                    choices: $possible_models,
                 );
 
                 $this->input->setOption($option_name, $model_class);

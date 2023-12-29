@@ -44,8 +44,8 @@ if (! function_exists('package_domain_path')) {
      * @return string|null
      */
     function package_domain_path(
-        string $package = null,
-        string $domain = null,
+        ?string $package = null,
+        ?string $domain = null,
         bool $parse_domain = false,
         bool $with_base_path = true
     ): ?string {
@@ -74,8 +74,8 @@ if (! function_exists('package_domain_app_path')) {
      * @return string
      */
     function package_domain_app_path(
-        string $package = null,
-        string $domain = null,
+        ?string $package = null,
+        ?string $domain = null,
         bool $parse_domain = false,
         bool $with_base_path = true
     ): string {
@@ -99,8 +99,8 @@ if (! function_exists('package_domain_database_path')) {
      * @return string
      */
     function package_domain_database_path(
-        string $package = null,
-        string $domain = null,
+        ?string $package = null,
+        ?string $domain = null,
         bool $parse_domain = false,
         bool $with_base_path = true
     ): string {
@@ -121,8 +121,8 @@ if (! function_exists('package_domain_migrations_path')) {
      * @return string
      */
     function package_domain_migrations_path(
-        string $package = null,
-        string $domain = null,
+        ?string $package = null,
+        ?string $domain = null,
         bool $parse_domain = false,
         bool $with_base_path = true
     ): string {
@@ -141,8 +141,8 @@ if (! function_exists('package_domain_seeders_path')) {
      * @return string
      */
     function package_domain_seeders_path(
-        string $package = null,
-        string $domain = null,
+        ?string $package = null,
+        ?string $domain = null,
         bool $parse_domain = false,
         bool $with_base_path = true
     ): string {
@@ -161,8 +161,8 @@ if (! function_exists('package_domain_factories_path')) {
      * @return string
      */
     function package_domain_factories_path(
-        string $package = null,
-        string $domain = null,
+        ?string $package = null,
+        ?string $domain = null,
         bool $parse_domain = false,
         bool $with_base_path = true
     ): string {
@@ -181,8 +181,8 @@ if (! function_exists('package_domain_resources_path')) {
      * @return string
      */
     function package_domain_resources_path(
-        string $package = null,
-        string $domain = null,
+        ?string $package = null,
+        ?string $domain = null,
         bool $parse_domain = false,
         bool $with_base_path = true
     ): string {
@@ -203,8 +203,8 @@ if (! function_exists('package_domain_views_path')) {
      * @return string
      */
     function package_domain_views_path(
-        string $package = null,
-        string $domain = null,
+        ?string $package = null,
+        ?string $domain = null,
         bool $parse_domain = false,
         bool $with_base_path = true
     ): string {
@@ -223,8 +223,8 @@ if (! function_exists('package_domain_lang_path')) {
      * @return string
      */
     function package_domain_lang_path(
-        string $package = null,
-        string $domain = null,
+        ?string $package = null,
+        ?string $domain = null,
         bool $parse_domain = false,
         bool $with_base_path = true
     ): string {
@@ -243,8 +243,8 @@ if (! function_exists('package_domain_tests_path')) {
      * @return string
      */
     function package_domain_tests_path(
-        string $package = null,
-        string $domain = null,
+        ?string $package = null,
+        ?string $domain = null,
         bool $parse_domain = false,
         bool $with_base_path = true
     ): string {
@@ -265,8 +265,8 @@ if (! function_exists('package_domain_routes_path')) {
      * @return string
      */
     function package_domain_routes_path(
-        string $package = null,
-        string $domain = null,
+        ?string $package = null,
+        ?string $domain = null,
         bool $parse_domain = false,
         bool $with_base_path = true
     ): string {
@@ -287,8 +287,8 @@ if (! function_exists('package_domain_config_path')) {
      * @return string
      */
     function package_domain_config_path(
-        string $package = null,
-        string $domain = null,
+        ?string $package = null,
+        ?string $domain = null,
         bool $parse_domain = false,
         bool $with_base_path = true
     ): string {
@@ -309,8 +309,8 @@ if (! function_exists('package_domain_helpers_path')) {
      * @return string
      */
     function package_domain_helpers_path(
-        string $package = null,
-        string $domain = null,
+        ?string $package = null,
+        ?string $domain = null,
         bool $parse_domain = false,
         bool $with_base_path = true
     ): string {
@@ -331,8 +331,8 @@ if (! function_exists('package_domain_domains_path')) {
      * @return string
      */
     function package_domain_domains_path(
-        string $package = null,
-        string $domain = null,
+        ?string $package = null,
+        ?string $domain = null,
         bool $parse_domain = false,
         bool $with_base_path = true
     ): string {
@@ -353,8 +353,8 @@ if (! function_exists('package_domain_namespace')) {
      * @return string|null
      */
     function package_domain_namespace(
-        string $package = null,
-        string $domain = null
+        ?string $package = null,
+        ?string $domain = null
     ): ?string {
         $vendor_name = $package_name = null;
 
@@ -389,8 +389,8 @@ if (! function_exists('package_domain_app_namespace')) {
      * @return string
      */
     function package_domain_app_namespace(
-        string $package = null,
-        string $domain = null
+        ?string $package = null,
+        ?string $domain = null
     ): string {
         return (package_domain_namespace($package, $domain) ?? 'App').'\\';
     }
@@ -405,8 +405,8 @@ if (! function_exists('package_domain_database_namespace')) {
      * @return string
      */
     function package_domain_database_namespace(
-        string $package = null,
-        string $domain = null
+        ?string $package = null,
+        ?string $domain = null
     ): string {
         return collect([package_domain_namespace($package, $domain), 'Database'])->filter()->implode('\\');
     }
@@ -421,8 +421,8 @@ if (! function_exists('package_domain_seeders_namespace')) {
      * @return string
      */
     function package_domain_seeders_namespace(
-        string $package = null,
-        string $domain = null
+        ?string $package = null,
+        ?string $domain = null
     ): string {
         return package_domain_database_namespace($package, $domain).'\\Seeders\\';
     }
@@ -437,8 +437,8 @@ if (! function_exists('package_domain_factories_namespace')) {
      * @return string
      */
     function package_domain_factories_namespace(
-        string $package = null,
-        string $domain = null
+        ?string $package = null,
+        ?string $domain = null
     ): string {
         return package_domain_database_namespace($package, $domain).'\\Factories\\';
     }
@@ -453,8 +453,8 @@ if (! function_exists('package_domain_tests_namespace')) {
      * @return string
      */
     function package_domain_tests_namespace(
-        string $package = null,
-        string $domain = null
+        ?string $package = null,
+        ?string $domain = null
     ): string {
         return collect([package_domain_namespace($package, $domain), 'Tests'])->filter()->implode('\\').'\\';
     }
@@ -469,8 +469,8 @@ if (! function_exists('package_domain_domains_namespace')) {
      * @return string
      */
     function package_domain_domains_namespace(
-        string $package = null,
-        string $domain = null
+        ?string $package = null,
+        ?string $domain = null
     ): string {
         return collect([package_domain_namespace($package, $domain), 'Domains'])->filter()->implode('\\').'\\';
     }
@@ -484,7 +484,7 @@ if (! function_exists('set_contents_to_composer_json')) {
      * @param  string|null  $path
      * @return bool
      */
-    function set_contents_to_composer_json(Collection|array $contents, string $path = null): bool
+    function set_contents_to_composer_json(Collection|array $contents, ?string $path = null): bool
     {
         $path = qualify_composer_json($path);
 
@@ -502,7 +502,7 @@ if (! function_exists('setContentsToComposerJson')) {
      * @param  string|null  $path
      * @return bool
      */
-    function setContentsToComposerJson(Collection|array $contents, string $path = null): bool
+    function setContentsToComposerJson(Collection|array $contents, ?string $path = null): bool
     {
         return set_contents_to_composer_json($contents, $path);
     }
@@ -519,7 +519,7 @@ if (! function_exists('add_contents_to_composer_json')) {
     function add_contents_to_composer_json(
         string $dot_notation_key,
         array|string|bool $contents,
-        string $path = null,
+        ?string $path = null,
         bool $merge_if_array = true,
     ): bool {
         $path = qualify_composer_json($path);
@@ -559,8 +559,8 @@ if (! function_exists('remove_contents_from_composer_json')) {
      */
     function remove_contents_from_composer_json(
         string $dot_notation_key,
-        array|string|bool $contents = null,
-        string $path = null
+        array|string|bool|null $contents = null,
+        ?string $path = null
     ): bool {
         $path = qualify_composer_json($path);
 

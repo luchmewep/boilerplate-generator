@@ -4,8 +4,6 @@ namespace Luchavez\BoilerplateGenerator\Traits;
 
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
-use function Laravel\Prompts\select;
-use function Laravel\Prompts\text;
 use Luchavez\BoilerplateGenerator\Console\Commands\RouteMakeCommand;
 use Luchavez\StarterKit\Traits\UsesCommandCustomMessagesTrait;
 use Symfony\Component\Console\Input\InputOption;
@@ -93,8 +91,8 @@ trait UsesCommandDomainTrait
      */
     public function setDomainFieldsFromOptions(
         string $package_option_name,
-        string $package_dir = null,
-        string $package_namespace = null
+        ?string $package_dir = null,
+        ?string $package_namespace = null
     ): void {
         if ($this->domain_name = $this->getDomainFromOptions($package_option_name, $package_dir)) {
             $this->domain_dir = ltrim(domain_decode($this->domain_name), '/');
@@ -111,7 +109,7 @@ trait UsesCommandDomainTrait
      * @param  string|null  $package_dir
      * @return array|bool|string|null
      */
-    public function getDomainFromOptions(string $package_option_name, string $package_dir = null): bool|array|string|null
+    public function getDomainFromOptions(string $package_option_name, ?string $package_dir = null): bool|array|string|null
     {
         $domain = $this->hasOption('domain') ? $this->option('domain') : null;
 
@@ -129,9 +127,9 @@ trait UsesCommandDomainTrait
             }
 
             $this->failed('Domain not found: '.$domain);
-            $choice = select(
-                label: 'Choose what to do',
-                options: [
+            $choice = $this->choice(
+                question: 'Choose what to do',
+                choices: [
                     'create new domain',
                     'choose from domains',
                 ],
@@ -174,9 +172,9 @@ trait UsesCommandDomainTrait
      * @param  string|null  $package_dir
      * @return string
      */
-    protected function createNewDomain(string $domain, string $package_option_name, Collection $domain_choices = null, string $package_dir = null): string
+    protected function createNewDomain(string $domain, string $package_option_name, ?Collection $domain_choices = null, ?string $package_dir = null): string
     {
-        $domain = text(label: 'Enter new domain name', placeholder: $domain, default: $domain, required: true);
+        $domain = $this->ask(question: 'Enter new domain name', default: $domain);
 
         if ($domain === $this->default_domain) {
             $domain = null;
@@ -207,12 +205,12 @@ trait UsesCommandDomainTrait
      * @param  Collection|null  $domain_choices
      * @return string|null
      */
-    public function chooseFromDomains(Collection $domain_choices = null): ?string
+    public function chooseFromDomains(?Collection $domain_choices = null): ?string
     {
         if ($domain_choices &&
-            ($domain = select(
-                label: 'Choose a domain',
-                options: $domain_choices->keys()->prepend($this->default_domain)->toArray(),
+            ($domain = $this->choice(
+                question: 'Choose a domain',
+                choices: $domain_choices->keys()->prepend($this->default_domain)->toArray(),
                 default: 0
             ))
         ) {
