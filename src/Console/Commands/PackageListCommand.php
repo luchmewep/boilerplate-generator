@@ -15,8 +15,8 @@ use Luchavez\StarterKit\Traits\UsesCommandCustomMessagesTrait;
  */
 class PackageListCommand extends Command
 {
-    use UsesCommandFilterTrait;
     use UsesCommandCustomMessagesTrait;
+    use UsesCommandFilterTrait;
 
     /**
      * The name of the console command.

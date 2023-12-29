@@ -96,7 +96,7 @@ class DescribeCommand extends Command
      * @param  array  $domains
      * @return void
      */
-    public function describePackage(string $package = null, string $path = null, array $directories = [], array $domains = []): void
+    public function describePackage(?string $package = null, ?string $path = null, array $directories = [], array $domains = []): void
     {
         if ($package) {
             $this->note("$package 📦", 'PACKAGE', false);
@@ -128,7 +128,7 @@ class DescribeCommand extends Command
      * @param  array  $directories
      * @return void
      */
-    public function describeDomain(string $domain, string $package = null, array $directories = []): void
+    public function describeDomain(string $domain, ?string $package = null, array $directories = []): void
     {
         $package = $package ? "$package 📦" : 'Laravel';
         $this->note($this->getBoldText($domain).' of '.$this->getBoldText($package), 'DOMAIN', false);
@@ -192,7 +192,7 @@ class DescribeCommand extends Command
      * @param  string|null  $domain
      * @return void
      */
-    protected function displayDirectories(array $directories = [], string $package = null, string $domain = null): void
+    protected function displayDirectories(array $directories = [], ?string $package = null, ?string $domain = null): void
     {
         $directories = collect($directories);
 

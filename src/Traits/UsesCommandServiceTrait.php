@@ -23,7 +23,7 @@ trait UsesCommandServiceTrait
      * @param  string|null  $description
      * @return void
      */
-    protected function addServiceOptions(string $description = null): void
+    protected function addServiceOptions(?string $description = null): void
     {
         $this->getDefinition()->addOption(
             new InputOption(
@@ -44,7 +44,7 @@ trait UsesCommandServiceTrait
      */
     protected function checkServiceExists(
         string &$service,
-        string $additionalNamespace = null,
+        ?string $additionalNamespace = null,
         bool $qualifyService = true,
         bool $disablePackageNamespaceTemporarily = false
     ): bool {
@@ -99,7 +99,7 @@ trait UsesCommandServiceTrait
      * @param  string|null  $additionalNamespace
      * @return string
      */
-    protected function qualifyService(string $service, string $additionalNamespace = null): string
+    protected function qualifyService(string $service, ?string $additionalNamespace = null): string
     {
         $service = (string) $this->cleanClassNamespace($service);
 

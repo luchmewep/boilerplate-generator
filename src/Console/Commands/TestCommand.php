@@ -74,7 +74,7 @@ class TestCommand extends Command
         $test_paths = [];
         $dot_notation = 'directories.tests.path';
 
-        $add_domains_to_test_paths = function (array $domains, string $package = null) use ($dot_notation, &$test_paths) {
+        $add_domains_to_test_paths = function (array $domains, ?string $package = null) use ($dot_notation, &$test_paths) {
             collect($domains)
                 ->when($this->domain_search, fn ($collection) => $collection->filter(fn ($details, $domain) => $domain == $this->domain_search || Str::contains($domain, $this->domain_search)))
                 ->each(function ($details, $domain) use ($package, $dot_notation, &$test_paths) {
@@ -151,7 +151,7 @@ class TestCommand extends Command
      * @param  string|null  $tests_path
      * @return void
      */
-    public function executeTests(string $package = null, string $domain = null, string $tests_path = null): void
+    public function executeTests(?string $package = null, ?string $domain = null, ?string $tests_path = null): void
     {
         $get_blinking_icon = function (string $str) {
             return $this->areIconsBlinking() ? '<blink>'.$str.'</blink>' : $str;

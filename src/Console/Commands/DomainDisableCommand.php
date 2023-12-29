@@ -3,7 +3,6 @@
 namespace Luchavez\BoilerplateGenerator\Console\Commands;
 
 use Illuminate\Support\Collection;
-use function Laravel\Prompts\confirm;
 use Luchavez\BoilerplateGenerator\Exceptions\MissingNameArgumentException;
 use Luchavez\BoilerplateGenerator\Exceptions\PackageNotFoundException;
 use Symfony\Component\Console\Input\InputOption;
@@ -79,7 +78,7 @@ class DomainDisableCommand extends DomainEnableCommand
         if ($enabled_children->count()) {
             $child_list = $enabled_children->keys()->map(fn ($key) => $this->getBoldText($key))->implode(', ', ', and ');
             $this->warning('One or more child domains are still enabled: '.$child_list);
-            if (confirm('Disable child domains?', required: true)) {
+            if ($this->confirm(question: 'Disable child domains?', default: true)) {
                 $enabled_children->each(function ($value, $key) use ($add_to_psr4_contents, $add_to_provider_contents) {
                     // Add the parent domain to PSR-4 contents
                     $add_to_psr4_contents($key);

@@ -15,8 +15,8 @@ use Luchavez\BoilerplateGenerator\Traits\UsesCommandVendorPackageDomainTrait;
  */
 class DomainListCommand extends Command
 {
-    use UsesCommandVendorPackageDomainTrait;
     use UsesCommandFilterTrait;
+    use UsesCommandVendorPackageDomainTrait;
 
     /**
      * The name and signature of the console command.

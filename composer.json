@@ -20,7 +20,7 @@
         "knuckleswtf/scribe": "^4.19",
         "laravel/pint": "^1.5|^1.9",
         "luchavez/starter-kit": "^1.0",
-        "laravel/prompts": "^0.1.4"
+        "barryvdh/laravel-ide-helper": "^2.13"
     },
     "require-dev": {
         "roave/security-advisories": "dev-latest",
