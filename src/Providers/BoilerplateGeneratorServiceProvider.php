@@ -7,7 +7,6 @@ use Luchavez\BoilerplateGenerator\Console\Commands\ConfigMakeCommand;
 use Luchavez\BoilerplateGenerator\Console\Commands\DataFactoryMakeCommand;
 use Luchavez\BoilerplateGenerator\Console\Commands\DataMakeCommand;
 use Luchavez\BoilerplateGenerator\Console\Commands\DescribeCommand;
-use Luchavez\BoilerplateGenerator\Console\Commands\DocsGenCommand;
 use Luchavez\BoilerplateGenerator\Console\Commands\DomainCreateCommand;
 use Luchavez\BoilerplateGenerator\Console\Commands\DomainDisableCommand;
 use Luchavez\BoilerplateGenerator\Console\Commands\DomainEnableCommand;
@@ -39,7 +38,6 @@ use Luchavez\BoilerplateGenerator\Console\Commands\ExtendedMakeRule;
 use Luchavez\BoilerplateGenerator\Console\Commands\ExtendedMakeSeeder;
 use Luchavez\BoilerplateGenerator\Console\Commands\ExtendedMakeTest;
 use Luchavez\BoilerplateGenerator\Console\Commands\FacadeMakeCommand;
-use Luchavez\BoilerplateGenerator\Console\Commands\GitlabCIMakeCommand;
 use Luchavez\BoilerplateGenerator\Console\Commands\HelperMakeCommand;
 use Luchavez\BoilerplateGenerator\Console\Commands\InstallCommand;
 use Luchavez\BoilerplateGenerator\Console\Commands\InterfaceMakeCommand;
@@ -102,10 +100,8 @@ class BoilerplateGeneratorServiceProvider extends ServiceProvider
         DataMakeCommand::class,
         DataFactoryMakeCommand::class,
         DescribeCommand::class,
-        DocsGenCommand::class,
         DtoMakeCommand::class,
         FacadeMakeCommand::class,
-        GitlabCIMakeCommand::class,
         HelperMakeCommand::class,
         InterfaceMakeCommand::class,
         RepositoryMakeCommand::class,

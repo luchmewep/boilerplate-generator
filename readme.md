@@ -97,10 +97,8 @@ php artisan bg:env:publish --all
 
 | Name           | Command             | Description                                                         |
 |----------------|---------------------|---------------------------------------------------------------------|
-| Describe       | `bg:describe`       | Display all information about Laravel app and/or package/s.         |                            |
-| Docs           | `bg:docs`           | Generate Scribe documentations.                                     |                            |
-| Env Variables  | `bg:env:publish`    | Publish all environment variables from root, packages, and domains. |                            |
-| Gitlab CI      | `bg:gitlab:publish` | Create a Gitlab CI YML file in a specific package.                  |                            |
+| Describe       | `bg:describe`       | Display all information about Laravel app and/or package/s.         |
+| Env Variables  | `bg:env:publish`    | Publish all environment variables from root, packages, and domains. |
 | Install        | `bg:install`        | Setup your Laravel application to utilize the package.              |
 | Clear Logs     | `bg:log:clear`      | Clear laravel.log contents.                                         |
 | Test           | `bg:test`           | Run the application and package tests.                              |
